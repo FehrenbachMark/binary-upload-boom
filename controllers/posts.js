@@ -13,7 +13,7 @@ module.exports = {
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-      res.render("feed.ejs", { posts: posts });
+      res.render("feed.ejs", { posts: posts, user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -54,6 +54,20 @@ module.exports = {
         }
       );
       console.log("Likes +1");
+      res.redirect(`/post/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  unlikePost: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $inc: { likes: -1 },
+        }
+      );
+      console.log("Likes -1");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
