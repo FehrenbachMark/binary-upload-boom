@@ -4,12 +4,13 @@
       <ul class="row list-unstyled">
         <% for(var i=0; i<posts.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <p><strong>User</strong>: <%= posts.userName %></p>
-            <!-- <p><%= posts[i].user%></p> -->
-            <p><%= posts[i].title%></p>
+           
+            <h2><%= posts[i].userName%></h2>
+            
             <a href="/post/<%= posts[i]._id%>">
               <img class="img-fluid hoverable" src="<%= posts[i].image%>">
             </a>
+            <h3><%= posts[i].title%></h3>
             <!-- add post captions -->
             <p><%= posts[i].caption%></p>
           </li>
