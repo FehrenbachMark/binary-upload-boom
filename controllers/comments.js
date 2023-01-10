@@ -4,6 +4,7 @@ module.exports = {
   createComment: async (req, res) => {
     try {
       await Comment.create({
+        userName: req.user.userName,
         comment: req.body.comment,
         likes: 0,
         post: req.params.id,
